@@ -33,7 +33,11 @@ RAZORPAY_KEY_SECRET = "ML5HvXHB2WjtYS6jj1cdCeHR"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [ "mpsctalati-production.up.railway.app",]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://mpsctalati-production.up.railway.app",
+]
 
 
 # Application definition
