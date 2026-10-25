@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
+
+print("DATABASE_URL present:", bool(os.environ.get("DATABASE_URL")))
+print("Database engine:", DATABASES["default"]["ENGINE"])
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,9 +34,7 @@ RAZORPAY_KEY_SECRET = "ML5HvXHB2WjtYS6jj1cdCeHR"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [  "10.0.2.2",
-    "127.0.0.1",
-    "localhost",]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,10 +85,10 @@ WSGI_APPLICATION = 'talati_backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+    )
 }
 
 
